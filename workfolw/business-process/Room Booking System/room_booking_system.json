@@ -1,0 +1,747 @@
+{
+  "name": "room-booking-system",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "จองห้องประชุม",
+        "formDescription": "จองห้องประชุมให้หน่อย",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Full Name",
+              "placeholder": "ชื่อผู้จองห้อง",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "room",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Submarine XL"
+                  },
+                  {
+                    "option": "Submarine S"
+                  },
+                  {
+                    "option": "Spore XL"
+                  },
+                  {
+                    "option": "Spore s"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "date",
+              "fieldType": "date",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "time",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "9-10"
+                  },
+                  {
+                    "option": "10-11"
+                  },
+                  {
+                    "option": "11-12"
+                  },
+                  {
+                    "option": "13-14"
+                  },
+                  {
+                    "option": "14-15"
+                  },
+                  {
+                    "option": "15-16"
+                  },
+                  {
+                    "option": "16-17"
+                  },
+                  {
+                    "option": "17-18"
+                  }
+                ]
+              },
+              "multiselect": true,
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        -820,
+        -120
+      ],
+      "id": "507a6347-f475-44e7-a917-e555347a8c60",
+      "name": "Form Booking Room",
+      "webhookId": "a64c7fab-7956-42d7-bf32-2d5e2f6c1039"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1Oc4BOTLc5E7A_GOSPsioIDiveJiT3gCeXsQuIj8wMHg",
+          "mode": "list",
+          "cachedResultName": "n8n-booking-room",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Oc4BOTLc5E7A_GOSPsioIDiveJiT3gCeXsQuIj8wMHg/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "list_booking",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Oc4BOTLc5E7A_GOSPsioIDiveJiT3gCeXsQuIj8wMHg/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "name": "={{ $('Map data').first().json.name }}",
+            "room": "={{ $('Map data').first().json.room }}",
+            "9-10": "={{ $('Map data').first().json['9-10'] }}",
+            "booking_date": "={{ $('Map data').first().json.booking_date }}",
+            "17-18": "={{ $('Map data').first().json['17-18'] }}",
+            "16-17": "={{ $('Map data').first().json['16-17'] }}",
+            "15-16": "={{ $('Map data').first().json['15-16'] }}",
+            "14-15": "={{ $('Map data').first().json['14-15'] }}",
+            "13-14": "={{ $('Map data').first().json['13-14'] }}",
+            "11-12": "={{ $('Map data').first().json['11-12'] }}",
+            "10-11": "={{ $('Map data').first().json['10-11'] }}",
+            "date_submit": "={{ $('Map data').first().json.submited_at }}"
+          },
+          "matchingColumns": [
+            "name"
+          ],
+          "schema": [
+            {
+              "id": "name",
+              "displayName": "name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "room",
+              "displayName": "room",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "9-10",
+              "displayName": "9-10",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "10-11",
+              "displayName": "10-11",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "11-12",
+              "displayName": "11-12",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "13-14",
+              "displayName": "13-14",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "14-15",
+              "displayName": "14-15",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "15-16",
+              "displayName": "15-16",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "16-17",
+              "displayName": "16-17",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "17-18",
+              "displayName": "17-18",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "booking_date",
+              "displayName": "booking_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "date_submit",
+              "displayName": "date_submit",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        380,
+        -320
+      ],
+      "id": "2361cce7-9121-4ab4-bee9-dc381f900bc3",
+      "name": "insert to Google Sheets",
+      "alwaysOutputData": true,
+      "retryOnFail": false,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "7Hlw2hPI3LZoUn14",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "completion",
+        "respondWith": "showText",
+        "responseText": "=ไม่สามารถจองย้อนหลังได้\nวันที่ที่คุณเลือก คือ {{ $('Form Booking Room').item.json.date }}"
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        -400,
+        -20
+      ],
+      "id": "41340ed7-2366-40e7-953c-1ed690df4d72",
+      "name": "Error select date before today",
+      "webhookId": "ddd0754d-40b0-41a9-ab88-d2bf267ebe7c"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1Oc4BOTLc5E7A_GOSPsioIDiveJiT3gCeXsQuIj8wMHg",
+          "mode": "list",
+          "cachedResultName": "n8n-booking-room",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Oc4BOTLc5E7A_GOSPsioIDiveJiT3gCeXsQuIj8wMHg/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "list_booking",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Oc4BOTLc5E7A_GOSPsioIDiveJiT3gCeXsQuIj8wMHg/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "room",
+              "lookupValue": "={{ $json.room }}"
+            },
+            {
+              "lookupColumn": "booking_date",
+              "lookupValue": "={{ $json.booking_date }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        -40,
+        80
+      ],
+      "id": "94260710-6b67-40e6-82c9-778873fbe90d",
+      "name": "Sheet :: check room and booking_date",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "7Hlw2hPI3LZoUn14",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n  \"name\": \"{{ $json['Full Name'] }}\",\n  \"booking_date\": \"{{ $json.date }}\",\n  \"room\": \"{{ $json.room }}\",\n  \"9-10\": {{ $json.time.includes('9-10')}},\n  \"10-11\": {{ $json.time.includes('10-11')}},\n  \"11-12\": {{ $json.time.includes('11-12')}},\n  \"13-14\": {{ $json.time.includes('13-14')}},\n  \"14-15\": {{ $json.time.includes('14-15')}},\n  \"15-16\": {{ $json.time.includes('15-16')}},\n  \"16-17\": {{ $json.time.includes('16-17')}},\n  \"17-18\": {{ $json.time.includes('17-18')}},\n  \"submited_at\": \"{{ $json.submittedAt }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -400,
+        -200
+      ],
+      "id": "49651275-b4ea-483c-955f-efb64e3a1816",
+      "name": "Map data"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "d47d7f49-37da-461f-a4a4-d277f913338c",
+              "leftValue": "={{ $json.date }}",
+              "rightValue": "={{ $today }}",
+              "operator": {
+                "type": "dateTime",
+                "operation": "afterOrEquals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -600,
+        -120
+      ],
+      "id": "8017bff6-9858-4545-9ee0-14befdc57515",
+      "name": "Booking Date is after or equal today"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "5840d11a-cb01-416b-a917-7e0935e8d682",
+              "leftValue": "={{ $json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        180,
+        80
+      ],
+      "id": "c8872005-6893-47d4-9e73-b95dbbac7c3d",
+      "name": "booking list is empty",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "content": "## รับข้อมูลการจองห้อง\n**รับข้อมูลและเช็คเงื่อนไขว่าวันที่จองต้องเป็นวันนี้หรือไม่ใช่อดีต",
+        "height": 440,
+        "width": 660
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -880,
+        -260
+      ],
+      "id": "48f85334-c3b4-4b17-bc71-a28d5b4fece9",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## ตรวจเช็คว่ามีคนจองหรือยัง\n**เช็คจากห้องและวันที่จอง",
+        "height": 300,
+        "width": 1220,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -140,
+        -20
+      ],
+      "id": "734ff377-5987-466d-9d6a-d579f579f7c9",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## เพิ่มข้อมูลการจองลง Google Sheet",
+        "height": 380,
+        "width": 800
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        280,
+        -460
+      ],
+      "id": "d78b4f4e-b010-41ab-8798-f8c3df520b89",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Booking Conflict Checker Function\n// ใช้ใน Code Node (Function) ของ N8N\n\n// รับข้อมูลจาก input nodes\nconst mapData = $('Map data').first().json; // ข้อมูลจาก map data\nconst sheetData = $input.all(); // ข้อมูลจาก Google Sheet (array)\n\n$('Map data')\n\n// กำหนด time slots ที่ต้องเช็ค\nconst timeSlots = ['9-10', '10-11', '11-12', '13-14', '14-15', '15-16', '16-17', '17-18'];\n\n// // ฟังก์ชันเช็ค conflict\nfunction checkBookingConflict(newBooking, existingBookings) {\n  const conflicts = [];\n\n  // เช็คแต่ละ time slot\n  timeSlots.forEach(slot => {\n    // ถ้า new booking มี slot นี้ = true\n    if (newBooking[slot] === true) {\n      \n      // เช็คใน existing bookings ว่ามี conflict ไหม\n      const conflictBookings = existingBookings.filter(booking => {\n        return booking.json.room === newBooking.room && \n               booking.json.booking_date === newBooking.booking_date &&\n               booking.json[slot] === true;\n      });\n      \n      // ถ้าเจอ conflict\n      if (conflictBookings.length > 0) {\n        conflicts.push({\n          timeSlot: slot,\n          conflictWith: conflictBookings.map(b => ({\n            name: b.name,\n            row_number: b.row_number\n          }))\n        });\n      }\n    }\n  });\n  \n  return conflicts;\n}\n\n// เช็ค conflicts\nconst conflicts = checkBookingConflict(mapData, sheetData);\n\n// สร้าง output\nconst result = {\n  newBooking: {\n    name: mapData.name,\n    room: mapData.room,\n    booking_date: mapData.booking_date,\n    requested_slots: timeSlots.filter(slot => mapData[slot] === true)\n  },\n  hasConflict: conflicts.length > 0,\n  conflicts: conflicts,\n  conflictSummary: conflicts.length > 0 ? \n    `Found ${conflicts.length} time slot conflicts` : \n    'No conflicts found',\n  canBook: conflicts.length === 0,\n  checkedAt: new Date().toISOString()\n};\n\n// Return ผลลัพธ์\nreturn [{\n  json: result\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        440,
+        100
+      ],
+      "id": "1acfee15-d043-496a-81a2-afb0fef295f8",
+      "name": "Check time not duplicate"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "2debad18-d688-4264-83f6-68da8651e1f1",
+              "leftValue": "={{ $json.canBook }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        660,
+        100
+      ],
+      "id": "c187d78a-30e4-455b-894b-c4e7d6743aa0",
+      "name": "Can Book"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "8a580754-5ed9-4f09-a6be-e9cd641abc39",
+              "leftValue": "",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        560,
+        -320
+      ],
+      "id": "981a63b3-57a4-437d-8b95-4cc49edee24a",
+      "name": "Insert Row Success"
+    },
+    {
+      "parameters": {
+        "operation": "completion",
+        "completionTitle": "ไม่สำเร็จ",
+        "completionMessage": "=การจองห้อง  {{ $json.newBooking.room }}, ในวันที่ {{ $json.newBooking.booking_date }}, เวลา {{ $json.newBooking.requested_slots }} ไม่สำเร็จ เพราะ เวลา {{ $json.conflicts.map(item => item.timeSlot) }} มีคนจองแล้ว กรุณาเลือกเวลาใหม่",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        900,
+        80
+      ],
+      "id": "560d82e4-f6f9-4c67-9cae-95e095488016",
+      "name": "Error Time Duplicate",
+      "webhookId": "4dc73c1f-591e-4ab5-852f-d410c5761b91"
+    },
+    {
+      "parameters": {
+        "operation": "completion",
+        "completionTitle": "สำเร็จ",
+        "completionMessage": "จองห้องสำเร็จ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        860,
+        -420
+      ],
+      "id": "891e6032-85e8-4d86-8306-ab41e9ee17ed",
+      "name": "Success Booking Room",
+      "webhookId": "dee8897b-e621-4077-a198-5c04482e3e3a"
+    },
+    {
+      "parameters": {
+        "operation": "completion",
+        "respondWith": "showText"
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        860,
+        -240
+      ],
+      "id": "38ed1bbb-ff4a-4b2a-bb14-9daf88abdde2",
+      "name": "Can't Insert row",
+      "webhookId": "4dc73c1f-591e-4ab5-852f-d410c5761b91"
+    }
+  ],
+  "pinData": {
+    "Form Booking Room": [
+      {
+        "json": {
+          "Full Name": "test",
+          "room": "Submarine XL",
+          "date": "2025-06-12",
+          "time": [
+            "15-16"
+          ],
+          "submittedAt": "2025-06-12T14:30:51.885+07:00",
+          "formMode": "test"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Form Booking Room": {
+      "main": [
+        [
+          {
+            "node": "Booking Date is after or equal today",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "insert to Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Insert Row Success",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sheet :: check room and booking_date": {
+      "main": [
+        [
+          {
+            "node": "booking list is empty",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Map data": {
+      "main": [
+        [
+          {
+            "node": "Sheet :: check room and booking_date",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Booking Date is after or equal today": {
+      "main": [
+        [
+          {
+            "node": "Map data",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Error select date before today",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "booking list is empty": {
+      "main": [
+        [
+          {
+            "node": "insert to Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Check time not duplicate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check time not duplicate": {
+      "main": [
+        [
+          {
+            "node": "Can Book",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Can Book": {
+      "main": [
+        [
+          {
+            "node": "insert to Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Error Time Duplicate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert Row Success": {
+      "main": [
+        [
+          {
+            "node": "Success Booking Room",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Can't Insert row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "2bcc7dab-d0f3-4b59-a7fc-d222bcbf2670",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "9a3b12aa51223f703007ea6ac7fe9c4449bbfddd9ed6c0bbdbde87bb1d046308"
+  },
+  "id": "NpFHhd2TygyVmwOa",
+  "tags": []
+}
