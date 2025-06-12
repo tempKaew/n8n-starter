@@ -12,7 +12,7 @@ Workflow นี้เป็นตัวอย่างการดึงข้�
 
 ## 🔧 โครงสร้าง Workflow
 
-![Todo API Data Formatter Flow](/images/todo_api_data_formatter-flow.jpg)
+![Todo API Data Formatter Flow](flow.jpg)
 
 ### Node ที่ใช้งาน:
 
@@ -69,7 +69,7 @@ Response Format: JSON
 
 ### การ Import Workflow
 
-1. ดาวน์โหลดไฟล์ `todo-api-data-formatter.json`
+1. ดาวน์โหลดไฟล์ `todo_api_data_formatter.json`
 2. เข้าไปที่ N8N Web Interface
 3. คลิก **"+"** → **"Import from file"**
 4. เลือกไฟล์ที่ดาวน์โหลด

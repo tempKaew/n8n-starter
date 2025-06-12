@@ -1,0 +1,147 @@
+{
+  "name": "daily-incomplete-todo-monitor",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -540,
+        -40
+      ],
+      "id": "7993d6d6-2609-4382-909d-39daf117889d",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "url": "https://jsonplaceholder.typicode.com/todos",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -320,
+        -40
+      ],
+      "id": "ba8aadad-bbcc-4818-a0d5-c8b5c0e758a1",
+      "name": "HTTP Request :: get todo list"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "457a0239-24ff-4d8a-be46-772640091970",
+              "leftValue": "={{ $json.completed }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "false",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -100,
+        -40
+      ],
+      "id": "53272689-3159-436a-bc31-73eaeb245596",
+      "name": "Filter : todo is not completed"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n  \"todoId\": {{ $json.id }},\n  \"todoTitle\": \"{{ $json.title }}\",\n  \"todoStatus\" : {{ $json.completed }}\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        120,
+        -40
+      ],
+      "id": "2683acfb-6172-49ef-9d68-a74bfa269143",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "content": "## Daily Incomplete Todo Monitor Workflow\nWorkflow นี้ทำงานอัตโนมัติทุกวันเวลาเที่ยงคืน เพื่อดึงรายการ Todo ทั้งหมด กรองเฉพาะงานที่ยังไม่เสร็จ และจัดรูปแบบข้อมูลสำหรับการติดตามและรายงาน เหมาะสำหรับการ monitoring งานที่ค้างอยู่",
+        "height": 320,
+        "width": 980,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -600,
+        -160
+      ],
+      "id": "77dd9664-a617-4408-9ff0-18777190fa73",
+      "name": "Sticky Note"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request :: get todo list",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request :: get todo list": {
+      "main": [
+        [
+          {
+            "node": "Filter : todo is not completed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter : todo is not completed": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "2b337bbe-850b-4de8-a65a-6d6354f4cf0a",
+  "meta": {
+    "instanceId": "9a3b12aa51223f703007ea6ac7fe9c4449bbfddd9ed6c0bbdbde87bb1d046308"
+  },
+  "id": "6D4Ag6gfhjeUMJcZ",
+  "tags": []
+}
