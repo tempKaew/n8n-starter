@@ -1,0 +1,96 @@
+{
+  "name": "todo-api-data-formatter",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -380,
+        0
+      ],
+      "id": "73c0ea3e-a356-4d66-943a-d9d425ec02a3",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "url": "https://jsonplaceholder.typicode.com/todos/1",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -120,
+        0
+      ],
+      "id": "8fd0e5e4-89e2-4592-b5c8-38c8794eca57",
+      "name": "HTTP Request :: get todo list"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n  \"todoId\": {{ $json.id }},\n  \"todoTitle\": \"{{ $json.title }}\",\n  \"todoStatus\" : {{ $json.completed }}\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        100,
+        0
+      ],
+      "id": "282837e8-6d17-4750-8bf3-d1a79c246019",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "content": "# Todo API Data Formatter Workflow\nWorkflow นี้เป็นตัวอย่างการดึงข้อมูล Todo จาก JSONPlaceholder API และจัดรูปแบบข้อมูลใหม่ให้อยู่ในรูปแบบที่ต้องการ เหมาะสำหรับการเรียนรู้การใช้งาน HTTP Request และ Data Transformation ใน N8N",
+        "height": 340,
+        "width": 820,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -460,
+        -140
+      ],
+      "typeVersion": 1,
+      "id": "b3a116e2-dd84-4530-ab02-08cfb0821d79",
+      "name": "Sticky Note"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request :: get todo list",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request :: get todo list": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "ebcacef6-074f-4a1f-81de-867193f6d30b",
+  "meta": {
+    "instanceId": "9a3b12aa51223f703007ea6ac7fe9c4449bbfddd9ed6c0bbdbde87bb1d046308"
+  },
+  "id": "ZmzsbDcQW95miBoj",
+  "tags": []
+}
