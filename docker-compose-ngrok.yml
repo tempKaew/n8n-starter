@@ -7,6 +7,7 @@ services:
       - n8n_data:/home/node/.n8n
     environment:
       - WEBHOOK_TUNNEL_URL=https://${NGROK_DOMAIN}
+      - WEBHOOK_URL=https://${NGROK_DOMAIN}
       - N8N_HOST=${NGROK_DOMAIN}
       - N8N_PORT=5678
       - GENERIC_TIMEZONE=Asia/Bangkok
